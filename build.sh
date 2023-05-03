@@ -11,11 +11,15 @@ fi
 
 west update
 
+west zephyr-export
+
 mkdir -p artifacts
 
 west build -s zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/firmware -DSHIELD="nyx_left"
 
 cp build/zephyr/zmk.uf2 artifacts/nice_nano_v2_nyx_left.uf2
+
+rm -rf build/*
 
 west build -s zmk/app -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)/firmware -DSHIELD="nyx_right"
 
